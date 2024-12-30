@@ -1,0 +1,23 @@
+[package]
+name = "media-stats-rs"
+version = "0.1.0"
+authors = ["LekoArts"]
+license = "MIT"
+description = "Generate a table with media statistics of video files in a folder. You'll receive information like the resolution or codec to quickly sort and filter your media files."
+readme = "README.md"
+homepage = ""
+repository = ""
+keywords = ["cli", "media", "statistics", "ffprobe"]
+categories = ["command-line-utilities"]
+edition = "2021"
+
+[dependencies]
+chrono = "0.4.39"
+clap = { version = "4.5.23", features = ["derive"] }
+comfy-table = "7.1.3"
+console = "0.15.10"
+csv = "1.3.1"
+ffprobe = "0.4.0"
+globset = "0.4"
+indicatif = "0.17.9"
+walkdir = "2"
