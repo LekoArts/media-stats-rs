@@ -68,6 +68,7 @@ pub struct MediaStats {
     pub height: i64,
     pub width: i64,
     pub duration: String,
+    pub file_size_bytes: u64,
     pub codec_name: String,
     pub audio_languages: Vec<String>,
     pub subtitles: Vec<String>,
@@ -128,10 +129,13 @@ pub fn extract_media_stats(info: &FfProbe) -> MediaStats {
         .into_iter()
         .collect::<Vec<_>>();
 
+    let file_size_bytes = info.format.size.parse::<u64>().unwrap_or(0);
+
     MediaStats {
         height,
         width,
         duration: format!("{:.0}", duration.parse::<f64>().unwrap() / 60.0),
+        file_size_bytes,
         codec_name: codec_name.unwrap_or("N/A".to_string()),
         audio_languages,
         subtitles,

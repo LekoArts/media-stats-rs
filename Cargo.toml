@@ -1,6 +1,6 @@
 [package]
 name = "media-stats-rs"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["LekoArts"]
 license = "MIT"
 description = "Generate a table with media statistics of video files in a folder. You'll receive information like the resolution or codec to quickly sort and filter your media files."

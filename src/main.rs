@@ -24,13 +24,14 @@ struct Cli {
     csv: bool,
 }
 
-const HEADER: [&str; 7] = [
+const HEADER: [&str; 8] = [
     "Filename",
     "Width",
     "Height",
     "Duration (min)",
+    "Size (GB)",
     "Codec",
-    "Audio Languages",
+    "Audio",
     "Subtitles",
 ];
 
@@ -94,12 +95,14 @@ fn main() {
             );
 
             let stats = util::extract_media_stats(&info);
+            let file_size_gigabytes = format!("{:.2}", stats.file_size_bytes as f64 / 1e9);
 
             table.add_row(vec![
                 file.filename.clone(),
                 stats.width.to_string(),
                 stats.height.to_string(),
                 stats.duration.clone(),
+                file_size_gigabytes.clone(),
                 stats.codec_name.clone(),
                 stats.audio_languages.join(", "),
                 stats.subtitles.join(", "),
@@ -112,6 +115,7 @@ fn main() {
                         stats.width,
                         stats.height,
                         stats.duration,
+                        file_size_gigabytes.clone(),
                         stats.codec_name,
                         stats.audio_languages.join(", "),
                         stats.subtitles.join(", "),
